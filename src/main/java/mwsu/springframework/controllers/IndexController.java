@@ -28,4 +28,9 @@ public class IndexController{
         //the model goes back through spring mvc dispatcher servlet which provide
         // the model to the template engine
     }
+
+    @RequestMapping("secured")
+    public String secured(){
+        return "secured";
+    }
 }

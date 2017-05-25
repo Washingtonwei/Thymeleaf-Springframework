@@ -16,11 +16,18 @@ import javax.validation.Valid;
 public class LoginController {
 
     @RequestMapping("/login")
-    public String checkoutForm(Model model){
+    public String loginForm(Model model){
         model.addAttribute("loginCommand", new LoginCommand());
         return "loginform";
     }
-    @RequestMapping(value="/dologin", method = RequestMethod.POST)
+
+    @RequestMapping("logout-success")
+    public String yourLoggedOut(){
+
+        return "logout-success";
+    }
+
+//    @RequestMapping(value="/dologin", method = RequestMethod.POST)
     public String doCheckout(@Valid LoginCommand loginCommand, BindingResult bindingResult){
         if(bindingResult.hasErrors())
         {

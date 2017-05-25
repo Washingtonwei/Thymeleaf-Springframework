@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8"/>
+    <link href="../static/css/bootstrap-3.3.4-dist/css/bootstrap.min.css" rel="stylesheet" media="screen"
+          th:href="@{/css/bootstrap-3.3.4-dist/css/bootstrap.min.css}"/>
+
+    <script src="../static/js/jquery-2.1.4.min.js"
+            th:src="@{/js/jquery-2.1.4.min.js}"></script>
+
+    <link th:href="@{/css/custom.css}" rel="stylesheet" media="screen"/>
+
+    <title>Secured Content</title>
+</head>
+<body>
+<div class="container" style="height: 100vh;">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Spring Security Demo</h1>
+        </div>
+    </div>
+
+    <div class="row" sec:authorize="isAuthenticated()">
+        <div class="col-md-10 col-md-offset-2">
+            <h2 style="color: green;">User is Logged In</h2>
+            <p sec:authentication="principal.username">User Name</p>
+        </div>
+    </div>
+
+    <div class="row" sec:authorize="!isAuthenticated()">
+        <div class="col-md-10 col-md-offset-2">
+            <h2 style="color: red;">User is Logged Out</h2>
+        </div>
+    </div>
+
+    <div class="row" sec:authorize="isAuthenticated() and hasRole('ROLE_ADMIN')">
+        <div class="col-md-10 col-md-offset-2">
+            <h2>User Has Role Admin</h2>
+        </div>
+    </div>
+
+    <div class="row" sec:authorize="isAuthenticated() and hasRole('ROLE_USER')">
+        <div class="col-md-10 col-md-offset-2">
+            <h2>User Has Role User</h2>
+        </div>
+    </div>
+</div>
+<div class="container" th:replace="fragments/footer :: footer">
+    <p>footer</p>
+</div>
+</body>>
+</html>
