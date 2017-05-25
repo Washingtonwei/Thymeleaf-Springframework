@@ -27,7 +27,7 @@ public class LoginController {
             return "loginform";
         }
 
-        return "redirect:index";
+        return "redirect:/";
 
     }
 }
